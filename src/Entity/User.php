@@ -34,9 +34,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="4", minMessage="Votre mot de passe doit fiare minimum 4")
+     * @Assert\EqualTo(propertyPath="confirm_password")
      */
     private $password;
-  
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="vous n'avez pas tape le mem mot de passe" )
+     */
+    public $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
